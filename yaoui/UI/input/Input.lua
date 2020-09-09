@@ -73,8 +73,8 @@ end
 
 local key_to_button = nil
 if love_version == '0.9.1' or love_version == '0.9.2' then
-    key_to_button = {mouse1 = 'l', mouse2 = 'r', mouse3 = 'm', wheelup = 'wu', wheeldown = 'wd', mouse4 = 'x1', mouse5 = 'x2'}
-else key_to_button = {mouse1 = '1', mouse2 = '2', mouse3 = '3', mouse4 = '4', mouse5 = '5'} end
+    key_to_button = {mouse1 = 1, mouse2 = 2, mouse3 = 3, wheelup = 'wu', wheeldown = 'wd', mouse4 = 'x1', mouse5 = 'x2'}
+else key_to_button = {mouse1 = 1, mouse2 = 2, mouse3 = 3, mouse4 = 4, mouse5 = 5} end
 local gamepad_to_button = {fdown = 'a', fup = 'y', fleft = 'x', fright = 'b', back = 'back', guide = 'guide', start = 'start',
                            leftstick = 'leftstick', rightstick = 'rightstick', l1 = 'leftshoulder', r1 = 'rightshoulder',
                            dpup = 'dpup', dpdown = 'dpdown', dpleft = 'dpleft', dpright = 'dpright'}
@@ -82,9 +82,11 @@ local axis_to_button = {leftx = 'leftx', lefty = 'lefty', rightx = 'rightx', rig
 
 function Input:down(action)
     for _, key in ipairs(self.binds[action]) do
-        if (love.keyboard.isDown(key) or love.mouse.isDown(key_to_button[key] or 0)) then
-            return true
-        end
+		if key:sub(1, #'mouse') == 'mouse' then
+			return love.mouse.isDown(key_to_button[key])
+		else
+			return love.keyboard.isDown(key)
+		end
         
         -- Supports only 1 gamepad, add more later...
         if self.joysticks[1] then
