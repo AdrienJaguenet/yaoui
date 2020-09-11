@@ -134,6 +134,25 @@ YaouiTheme.Button.draw = function(self)
     love.graphics.setColor(255, 255, 255)
 end
 
+-- Label
+YaouiTheme.Label = {}
+
+YaouiTheme.Label.new = function(self)
+end
+
+YaouiTheme.Label.update = function(self, dt)
+end
+
+YaouiTheme.Label.draw = function(self)
+	local font = love.graphics.getFont()
+	if self.font then
+		love.graphics.setFont(self.font)
+	end
+	love.graphics.print(self.text, self.x, self.y)
+	love.graphics.setFont(font)
+	love.graphics.setColor(255, 255, 255)
+end
+
 -- Checkbox
 YaouiTheme.Checkbox = {}
 YaouiTheme.Checkbox.new = function(self)
