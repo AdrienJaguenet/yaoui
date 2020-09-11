@@ -15,6 +15,8 @@ yaoui.Flow = function(...) return Flow(yaoui, ...) end
 
 local Button = require(yaoui_path .. 'Button')
 yaoui.Button = function(...) return Button(yaoui, ...) end
+local Label = require(yaoui_path .. 'Label')
+yaoui.Label = function(...) return Label(yaoui, ...) end
 local Checkbox = require(yaoui_path .. 'Checkbox')
 yaoui.Checkbox = function(...) return Checkbox(yaoui, ...) end
 local Dropdown = require(yaoui_path .. 'Dropdown')

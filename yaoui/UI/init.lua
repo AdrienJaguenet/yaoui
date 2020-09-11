@@ -97,6 +97,8 @@ end
 
 local Button = require(ui_path .. 'Button')
 UI.Button = function(...) return Button(UI, ...) end
+local Label = require(ui_path .. 'Label')
+UI.Label = function(...) return Label(UI, ...) end
 local Checkbox = require(ui_path .. 'Checkbox')
 UI.Checkbox = function(...) return Checkbox(UI, ...) end
 local Frame = require(ui_path .. 'Frame')
