@@ -3,43 +3,43 @@ yaoui_path = yaoui_path:gsub("%.", "/")
 local YaouiTheme = {}
 
 YaouiTheme.colors = {
-    hover_bg = {12, 12, 12},
-    hover_text = {204, 204, 204},
+    hover_bg = {.047, .047, .047},
+    hover_text = {.8, .8, .8},
 
-    text_dark = {188, 190, 192},
-    text = {222, 222, 222},
-    text_light = {255, 255, 255},
+    text_dark = {.737, .745, .752},
+    text = {.87, .87, .87},
+    text_light = {1, 1, 1},
 
-    button_primary = {31, 55, 95},
-    button_hot = {34, 86, 148},
-    button_pressed = {36, 104, 204},
-    button_loading_icon = {45, 117, 223},
+    button_primary = {.121, .215, .372},
+    button_hot = {.133, .337, .58},
+    button_pressed = {.141, .407, .8},
+    button_loading_icon = {.176, .458, .874},
 
-    checkbox_bg = {84, 84, 84},
-    checkbox_v = {75, 194, 244},
+    checkbox_bg = {.329, .329, .329},
+    checkbox_v = {.294, .760, .956},
 
-    dropdown_primary = {43, 110, 210},
-    dropdown_area_bg = {32, 32, 32},
-    dropdown_button_selected_bg = {20, 32, 48},
+    dropdown_primary = {.168, .431, .823},
+    dropdown_area_bg = {.125, .125, .125},
+    dropdown_button_selected_bg = {.078, .125, .188},
 
-    flat_dropdown_bg = {57, 59, 61},
-    flat_dropdown_outline = {127, 157, 185},
-    flat_dropdown_button_selected_bg = {30, 144, 255},
+    flat_dropdown_bg = {.223, .231, .239},
+    flat_dropdown_outline = {.5, .615, .725},
+    flat_dropdown_button_selected_bg = {.117, .564, 1},
 
-    flat_textinput_bg = {57, 59, 61},
-    flat_textinput_selected_text_bg = {51, 153, 255},
+    flat_textinput_bg = {.223, .231, .239},
+    flat_textinput_selected_text_bg = {.2, .6, 1},
 
-    separator = {160, 160, 160},
+    separator = {.627, .627, .627},
 
-    icon_button_primary = {204, 204, 204},
-    icon_button_hover = {36, 104, 204},
+    icon_button_primary = {.8, .8, .8},
+    icon_button_hover = {.141, .407, .8},
 
-    image_button_primary = {36, 104, 204},
+    image_button_primary = {.141, .407, .8},
 
-    tab_primary = {36, 104, 204},
+    tab_primary = {.141, .407, .8},
 
-    textinput_bg = {12, 12, 12},
-    textinput_selected_text_bg = {51, 153, 255},
+    textinput_bg = {.047, .047, .047},
+    textinput_selected_text_bg = {.2, .6, 1},
 }
 
 YaouiTheme.font_awesome = require(yaoui_path .. '.FontAwesome')
@@ -131,7 +131,7 @@ YaouiTheme.Button.draw = function(self)
         end
     else love.graphics.print(self.text, self.x + self.parent.size/2, self.y + math.floor(self.parent.size*0.7/2) - self.parent.size/20) end
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- Label
@@ -150,13 +150,13 @@ YaouiTheme.Label.draw = function(self)
 	end
 	love.graphics.print(self.text, self.x, self.y)
 	love.graphics.setFont(font)
-	love.graphics.setColor(255, 255, 255)
+	love.graphics.setColor(1, 1, 1)
 end
 
 -- Checkbox
 YaouiTheme.Checkbox = {}
 YaouiTheme.Checkbox.new = function(self)
-    self.check_alpha = 255
+    self.check_alpha = 1
     self.check_draw = false
     self.timer = self.yui.Timer()
 end
@@ -167,7 +167,7 @@ end
 
 YaouiTheme.Checkbox.draw = function(self)
     if self.checked_enter then 
-        self.check_alpha = 255
+        self.check_alpha = 1
         self.check_draw = true
     elseif self.checked_exit then self.timer:tween('check', 0.15, self, {check_alpha = 0}, 'linear', function() self.check_draw = false end) end
 
@@ -187,7 +187,7 @@ YaouiTheme.Checkbox.draw = function(self)
     love.graphics.setColor(r, g, b, self.check_alpha)
     if self.check_draw then love.graphics.print(self.icon, self.x + self.parent.size/20, self.y + math.floor(self.parent.size*0.7/2) - self.parent.size/18) end
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- Dropdown
@@ -214,7 +214,7 @@ YaouiTheme.Dropdown.draw = function(self)
                         self.x + self.font:getWidth(self.title .. '   ' .. self.parent.options[self.parent.current_option] .. ' '), 
                         self.y + math.floor(self.parent.size*0.7/2.5))
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 YaouiTheme.DropdownScrollarea = {}
@@ -226,7 +226,7 @@ YaouiTheme.DropdownScrollarea.draw = function(self)
 
     -- Draw scrollbars background
     love.graphics.setScissor()
-    love.graphics.setColor(128, 131, 135, 255)
+    love.graphics.setColor(.5, .513, .529, 1)
     if self.show_scrollbars then
         if self.vertical_scrolling then
             love.graphics.rectangle('fill', 
@@ -294,7 +294,7 @@ YaouiTheme.DropdownButton.draw = function(self)
     love.graphics.setFont(self.font)
     love.graphics.print(self.text, self.x + self.size + self.add_x, self.y + math.floor(self.size*0.65/2))
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- FlatDropdown
@@ -318,7 +318,7 @@ YaouiTheme.FlatDropdown.draw = function(self)
                         self.x + self.w - self.parent.size/3 - self.font:getWidth(self.icon), 
                         self.y + math.floor(self.parent.size*0.7/2.5) - self.parent.size/20)
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 YaouiTheme.FlatDropdownScrollarea = {}
@@ -326,14 +326,14 @@ YaouiTheme.FlatDropdownScrollarea.draw = function(self)
     love.graphics.setLineStyle('rough')
     -- Draw scrollarea frame
     local r, g, b = unpack(self.yui.Theme.colors.flat_dropdown_bg)
-    love.graphics.setColor(r, g, b, 255)
+    love.graphics.setColor(r, g, b, 1)
     love.graphics.rectangle('fill', self.x, self.y, self.w, self.h)
     love.graphics.setColor(unpack(self.yui.Theme.colors.flat_dropdown_outline))
     love.graphics.rectangle('line', self.x + 1, self.y, self.w - 2, self.h)
 
     -- Draw scrollbars background
     love.graphics.setScissor()
-    love.graphics.setColor(128, 131, 135, 255)
+    love.graphics.setColor(128, 131, 135, 1)
     if self.show_scrollbars then
         if self.vertical_scrolling then
             love.graphics.rectangle('fill', 
@@ -374,7 +374,7 @@ YaouiTheme.FlatDropdownButton.draw = function(self)
     love.graphics.setFont(self.font)
     love.graphics.print(self.text, self.x + self.parent.size/3, self.y)
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- FlatTextinput
@@ -436,7 +436,7 @@ YaouiTheme.FlatTextinput.draw = function(self)
     end
 
     love.graphics.setLineStyle('smooth')
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
 
     if self.yui.debug_draw then
         love.graphics.setColor(222, 80, 80)
@@ -444,7 +444,7 @@ YaouiTheme.FlatTextinput.draw = function(self)
     end
 
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- HorizontalSeparator
@@ -459,7 +459,7 @@ YaouiTheme.HorizontalSeparator.draw = function(self)
     love.graphics.setLineStyle('rough')
     love.graphics.line(self.x + self.margin_left, self.y + self.size/2, self.x + self.w - self.margin_left - self.margin_right, self.y + self.size/2)
     love.graphics.setLineStyle('smooth')
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- HorizontalSpacing
@@ -469,7 +469,7 @@ YaouiTheme.HorizontalSpacing.draw = function(self)
         love.graphics.setColor(222, 80, 80)
         love.graphics.rectangle('line', self.x, self.y, self.w, self.h)
     end
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- IconButton
@@ -522,12 +522,12 @@ YaouiTheme.IconButton.draw = function(self)
     end
 
     local r, g, b = unpack(self.color)
-    love.graphics.setColor(r, g, b, 255)
+    love.graphics.setColor(r, g, b, 1)
     local font = love.graphics.getFont()
     love.graphics.setFont(self.font)
     love.graphics.print(self.icon, self.x + self.w/10, self.y + self.h/64)
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- ImageButton
@@ -542,7 +542,7 @@ YaouiTheme.ImageButton.update = function(self, dt)
 end
 
 YaouiTheme.ImageButton.draw = function(self)
-    if self.enter then self.timer:tween('alpha', 0.1, self, {alpha = 255}, 'linear')
+    if self.enter then self.timer:tween('alpha', 0.1, self, {alpha = 1}, 'linear')
     elseif self.exit then self.timer:tween('alpha', 0.1, self, {alpha = 0}, 'linear') end
 
     love.graphics.stencil(function()
@@ -554,7 +554,7 @@ YaouiTheme.ImageButton.draw = function(self)
     love.graphics.setStencilTest()
 
     if self.parent.overlay then self.parent.overlay(self.parent) end
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
 end
 
 YaouiTheme.ImageButton.postDraw = function(self)
@@ -563,7 +563,7 @@ YaouiTheme.ImageButton.postDraw = function(self)
     love.graphics.setColor(r, g, b, self.alpha)
     if self.parent.rounded_corners then love.graphics.rectangle('line', self.x, self.y, self.w, self.h, self.h/18, self.h/18)
     else love.graphics.rectangle('line', self.x, self.y, self.w, self.h) end
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
     love.graphics.setLineWidth(1)
 end
 
@@ -623,12 +623,12 @@ YaouiTheme.TabButton.draw = function(self)
     end
 
     local r, g, b = unpack(text_color)
-    love.graphics.setColor(r, g, b, 255)
+    love.graphics.setColor(r, g, b, 1)
     local font = love.graphics.getFont()
     love.graphics.setFont(self.parent.font)
     love.graphics.print(self.text, self.x + self.w/2 - self.parent.font:getWidth(self.text)/2, self.y + self.parent.font:getHeight()/4)
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
 
 end
 
@@ -645,7 +645,7 @@ YaouiTheme.Text.draw = function(self)
     love.graphics.setFont(self.font)
     love.graphics.print(self.text, self.x + self.size/6, self.y + self.font:getHeight()/2 + self.size/4)
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- Textinput
@@ -707,7 +707,7 @@ YaouiTheme.Textinput.draw = function(self)
     end
 
     love.graphics.setLineStyle('smooth')
-    love.graphics.setColor(255, 255, 255, 255)
+    love.graphics.setColor(1, 1, 1, 1)
 
     if self.yui.debug_draw then
         love.graphics.setColor(222, 80, 80)
@@ -715,7 +715,7 @@ YaouiTheme.Textinput.draw = function(self)
     end
 
     love.graphics.setFont(font)
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- VerticalSeparator
@@ -730,7 +730,7 @@ YaouiTheme.VerticalSeparator.draw = function(self)
     love.graphics.setLineStyle('rough')
     love.graphics.line(self.x + self.size/2, self.y + self.margin_top, self.x + self.size/2, self.y + self.h - self.margin_top - self.margin_bottom)
     love.graphics.setLineStyle('smooth')
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 -- VerticalSpacing
@@ -740,7 +740,7 @@ YaouiTheme.VerticalSpacing.draw = function(self)
         love.graphics.setColor(222, 80, 80)
         love.graphics.rectangle('line', self.x, self.y, self.w, self.h)
     end
-    love.graphics.setColor(255, 255, 255)
+    love.graphics.setColor(1, 1, 1)
 end
 
 return YaouiTheme

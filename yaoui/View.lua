@@ -25,6 +25,7 @@ function View:new(yui, x, y, w, h, layout)
     self.margin_top = layout.margin_top or 0
     self.margin_right = layout.margin_right or 0
     self.margin_bottom = layout.margin_bottom or 0
+	self.background = layout.background or nil
 
     -- Set child position and size
     self.layout[1].x, self.layout[1].y = self.x + self.margin_left, self.y + self.margin_top
@@ -46,6 +47,12 @@ function View:update(dt)
 end
 
 function View:draw()
+	if self.background then
+		local c = love.graphics.getColor()
+		love.graphics.setColor(self.background[1], self.background[1], self.background[2])
+		love.graphics.rectangle('fill', self.x, self.y, self.w, self.h)
+		love.graphics.setColor(1, 1, 1)
+	end
     self.layout[1]:draw()
     if self.layout.overlay then
         for _, element in ipairs(self.layout.overlay) do
