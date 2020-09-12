@@ -37,6 +37,10 @@ function Label:new(yui, settings)
     self.icon_r = 0
 end
 
+function Label:setText(txt)
+	self.label.text = txt
+end
+
 function Label:update(dt)
     if self.label.hot and self.label.released then
         if self.onClick then

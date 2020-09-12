@@ -1,7 +1,7 @@
 local ui_path = (...):match('(.-)[^%.]+$') .. '.'
 local Object = require(ui_path .. 'classic.classic')
 local Base = require(ui_path .. 'Base')
-local Label = Object:extend('Button')
+local Label = Object:extend('Label')
 local Draggable = require(ui_path .. 'Draggable')
 local Resizable = require(ui_path .. 'Resizable')
 Label:implement(Base)
